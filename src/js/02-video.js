@@ -3,12 +3,14 @@ const throttle = require('lodash.throttle');
 
 const LOCALSTORAGE_KEY = 'videoplayer-current-time';
 
-const videoPlayerElem = document.querySelector('#vimeo-player');
-const player = new Player(videoPlayerElem, {
+const refs = {
+  videoPlayer: document.querySelector('#vimeo-player'),
+};
+const player = new Player(refs.videoPlayer, {
   muted: true,
 });
 
-videoPlayerElem.addEventListener('load', onPlayerLoad);
+refs.videoPlayer.addEventListener('load', onPlayerLoad);
 player.on('timeupdate', throttle(onPlayerRunning, 3000));
 
 function onPlayerRunning({ seconds }) {
@@ -17,7 +19,6 @@ function onPlayerRunning({ seconds }) {
   } catch (error) {
     console.log(error.name);
     console.log(error.message);
-    console.log(error.stack);
   }
 }
 
@@ -27,10 +28,8 @@ function onPlayerLoad() {
 
     player
       .setCurrentTime(lastVideoPosition)
-      .then(function (seconds) {
-        seconds = lastVideoPosition;
-      })
-      .catch(function (error) {
+      .then(seconds => (seconds = lastVideoPosition))
+      .catch(error => {
         console.log(error.name);
         console.log(error.message);
       });

@@ -9,9 +9,9 @@ const refs = {
   formTextarea: document.querySelector('textarea[name="message"]'),
 };
 
-window.addEventListener('load', onWindowLoadSetInputValue);
 refs.feedbackForm.addEventListener('input', throttle(onFeedbackFormInput, 500));
 refs.feedbackForm.addEventListener('submit', onFeedbackFormSibmit);
+window.addEventListener('load', onWindowLoadSetInputValue);
 
 function onFeedbackFormInput(event) {
   const { name, value } = event.target;
@@ -35,10 +35,9 @@ function onWindowLoadSetInputValue() {
 function onFeedbackFormSibmit(event) {
   event.preventDefault();
 
-  const feedbackForm = event.currentTarget;
   const formDataObj = JSON.parse(localStorage.getItem(LOCALSTORAGE_FEEDBACK_KEY));
 
   console.log(formDataObj);
   localStorage.removeItem(LOCALSTORAGE_FEEDBACK_KEY);
-  feedbackForm.reset();
+  refs.feedbackForm.reset();
 }
