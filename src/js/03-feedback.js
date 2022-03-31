@@ -9,9 +9,10 @@ const refs = {
   formTextarea: document.querySelector('textarea[name="message"]'),
 };
 
+window.addEventListener('load', onWindowLoadSetInputValue);
+
 refs.feedbackForm.addEventListener('input', throttle(onFeedbackFormInput, 500));
 refs.feedbackForm.addEventListener('submit', onFeedbackFormSibmit);
-window.addEventListener('load', onWindowLoadSetInputValue);
 
 function onFeedbackFormInput(event) {
   const { name, value } = event.target;
