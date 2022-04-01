@@ -1,9 +1,42 @@
+body {
+  display: grid;
+  place-items: center;
+
+  width: 98vw;
+  height: 90vh;
+
+  background-image: url(https://i.imgur.com/Iblz2HU.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body::after {
+  content: 'Фото автора Jakub Novacek: Pexels';
+  position: absolute;
+  
+  bottom: 10px;
+  right: 10px;
+  
+  color: #ffffff;
+}
+
+p {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+p a {
+  color: lightyellow;
+}
+
 .feedback-form {
   display: flex;
   flex-direction: column;
-  max-width: 480px;
+  width: 380px;
   padding: 12px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 }
@@ -12,20 +45,46 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+
+  font-weight: 700;
 }
 
 .feedback-form button {
   padding: 8px 12px;
-  font: inherit;
+
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1.15rem;
   cursor: pointer;
+
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+.feedback-form button:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: darkgreen;
 }
 
 input,
 textarea {
-  padding: 8px;
-  font: inherit;
+  padding: 12px;
+  font-weight: 500;
+  font-size: 1.15rem;
+
+  border: none;
+
+  color: maroon;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 textarea {
   resize: none;
+}
+
+input:focus-within,
+textarea:focus-within {
+  outline: 2px solid #ddd;
 }
